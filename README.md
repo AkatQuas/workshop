@@ -1,3 +1,11 @@
+# Workshop
+
+The original repository assignes some code challenges in each chapter.
+
+I have sorted them all with the evidence proof that my solutions, some of which may be not the best, passed every tests.
+
+You would have had a better understanding only if you went through these chapters carefully!
+
 # koa
 
 In this workshop, you will learn the basics of [koa](https://github.com/koajs/koa),

@@ -10,10 +10,18 @@ var app = module.exports = koa();
  */
 
 app.use(function* (next) {
+  const stat = function (filename) {
+    return done => {
+      fs.stat(filename, (err, stats) => {
+        done(err, stats.size);
+      });
+    }
+  };
   if (this.request.path !== '/stream') return yield* next;
-
-  // this.response.type =
-  // this.response.body =
+  const stream = fs.createReadStream(__filename);
+  this.response.type = 'application/javascript';
+  this.response.length = yield stat(__filename);
+  this.response.body = stream;
 });
 
 /**
@@ -23,5 +31,5 @@ app.use(function* (next) {
 app.use(function* (next) {
   if (this.request.path !== '/json') return yield* next;
 
-  // this.response.body =
+  this.response.body = { message: 'hello world' };
 });
